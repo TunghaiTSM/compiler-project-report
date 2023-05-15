@@ -77,13 +77,21 @@
 \section{實作過程}
 \subsection{使用flex, yacc生出編譯器}
 \begin{frame}{使用flex, yacc生出編譯器}
-Content
+\begin{itemize}
+    \item 我們首先參考了巴哈上的教學\cite{Lex}，然後從這兩個地方\cite{ANSILex} \cite{ANSIYacc}取得了yacc, lex檔案。
+    \item 然而我們發現無法直接使用指令編譯出檔案，因此我們又參考了Github上的討論串\cite{C99Grammars}，得知了我們應該使用yacc -d的參數來編譯，而不是直接執行yacc: 
+    \item 在同一個討論串中，我們也發現了yacc.y的檔案中需要再增加一個driver的函式(見下頁圖)，否則會無法進行編譯。
+    \item 其它的都很順例，就照步驟直接做就好了。
+\end{itemize}
+\end{frame}
+
+\begin{frame}{使用flex, yacc生出編譯器}[fragile]
+    圖在這裡。 yacc.y的最後一個函式(有driver註解地方的)
 \end{frame}
 
 \subsection{使用LLVM, clang生出組語、執行檔}
 \begin{frame}
     \frametitle{使用LLVM, clang生出組語、執行檔}
-    Content
 \end{frame}
 
 \section{Makefile實作}
@@ -94,7 +102,7 @@ Content
 \section{參考資料}
 \begin{frame}{參考資料}
     %posibles estilos para bibliografía: unsrt , siam , plain , ieeetr , alpha , acm , abbrv
-    \bibliographystyle{apalike}
+    \bibliographystyle{abbrv}
   \bibliography{references}
 \end{frame}
 
