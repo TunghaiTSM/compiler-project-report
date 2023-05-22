@@ -14,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage[spanish]{babel} 
 \usepackage[pages=some]{background}
+\usepackage{listings}
 \pagenumbering{arabic}
 
 
@@ -26,27 +27,28 @@
 
 %Nombre del autor
 \author{
-    \item 李智修 S08350122
+    \item 李智修 S08351050
     \item 張聯榮 S09350148
-    \item 林佑軒 S09350122
+    \item 林佑軒 S09350117
 } 
 
 %Fecha o evento en que se presentará la plática
-\date{報告日期: XXXX/XX/XX} 
+\date{報告日期: 2023/05/23} 
 
 
 %%Tema de beamer "CCM-3"
 \usetheme{ccm3}
 
 \begin{document}
-{\setbeamertemplate{background}{
-\includegraphics[width=\the\paperwidth,height=\the\paperheight]{images/P3.png}}
+{
+    \setbeamertemplate{background}{
+        \includegraphics[width=\the\paperwidth,height=\the\paperheight]{images/P3.png}
+    }
 
-%------------------------------------------------------------
-\begin{frame}
-  \titlepage %Necesario para generar la portada
-\end{frame}
-
+    %------------------------------------------------------------
+    \begin{frame}
+        \titlepage %Necesario para generar la portada
+    \end{frame}
 } %aquí termina el cambio de fondo
 
 %------------------------------------------------------------
@@ -63,7 +65,7 @@
     \item 作業系統: Arch Linux %%[\checkmark] muestra una palomita al inicio de la línea
     \item 系統架構: x86\_64
     \item 
-\includegraphics[width=260,height=160]{images/OS_INFO.png}
+\includegraphics[width=260pt,height=160pt]{images/OS_INFO.png}
   \end{itemize}
 \end{frame}
 
@@ -75,7 +77,8 @@
     \item Makefile: 自動化固定的步驟。
     \item flex, yacc: 將提供的.y, .l檔轉成自制的編譯器。
     \item clang, LLVM: 將程式轉成組合語言，然後編譯成可執行檔。
-    \item 圖在這裡。make setup的畫面。(Github有)
+    \item 
+    \includegraphics[width=250pt,height=100pt]{238532181-1faf40c2-514c-408a-8031-e7a7a61af23c}
   \end{itemize}
 \end{frame}
 
@@ -95,7 +98,7 @@
 \begin{frame}{使用flex, yacc生出編譯器}
 \begin{itemize}
     \item 
-    圖在這裡。 yacc.y的最後一個函式(有driver註解地方的)
+    \includegraphics[width=300pt,height=150pt]{截圖 2023-05-16 下午2.36.23}
 \end{itemize}
 \end{frame}
 
@@ -104,13 +107,19 @@
 \begin{itemize}
     \item 執行結果如下:
     \item 
-    圖在這裡。 執行make build的。(Github有)
-    \item
-    圖在這裡。執行make test的。(Github有)
+    \includegraphics[width=300pt,height=150pt]{238418057-ddf2bca5-cdba-48f9-9b31-7cc684d9087e}
 \end{itemize}
 \end{frame}
 %------------------------------------------------------------
-\subsection{使用LLVM, clang生出組語、執行檔的問題}
+\begin{frame}{使用flex, yacc生出編譯器}
+\begin{itemize}
+    \item 
+    \includegraphics[width=300pt,height=180pt]{238418183-99987aa3-0810-4e34-a41e-92acb99df7cb.png}
+\end{itemize}
+\end{frame}
+%------------------------------------------------------------
+
+\subsection{使用LLVM, clang生出組語、執行檔}
 \begin{frame}{使用LLVM, clang生出組語、執行}
 \begin{itemize}
     \item 在一開始的時候，我們還不知道如何使用ld指令，就直接加上了上一步生出來的.o檔，所以編譯出來的程式一直顯示Segmentation Fault。
@@ -122,13 +131,19 @@
 \end{frame}
 
 %------------------------------------------------------------
-\subsection{使用LLVM, clang生出組語、執行檔的圖片}
 \begin{frame}{使用LLVM, clang生出組語、執行檔}
 \begin{itemize}
     \item 
-        圖在這裡。使用make assembly的畫面(圖一)(Github有)。
+        \includegraphics[width=300pt,height=100pt]{238419442-7030003f-ea2c-4296-bcc7-9e7bc5deb41b}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{使用LLVM, clang生出組語、執行檔}
+\begin{itemize}
+    
     \item
-        圖在這裡。使用make assembly的畫面(圖二)(Github有)。
+        \includegraphics[width=300pt,height=100pt]{238419503-3338260e-882b-48e5-88de-9b67942e9dee}
 \end{itemize}
 \end{frame}
 
@@ -136,9 +151,8 @@
 \section{Makefile實作}
 \begin{frame}{使用Makefile加速測試過程}
 \begin{itemize}
-    \item 大家前面看圖可能有發現，我們的指令都是使用make的指令生出來的。
-    \item 我們覺得在測試的過程中，比起功能更厲害的shell script(要控制執行部份指令的話還要再寫條件跟傳入參數控制)
-    \item 因此Makefile的簡單跟彈性可能會更合適，所以我們就為了這個期末專題寫了一個Makefile。
+    \item 大家前面看圖可能有發現，我們的指令都是使用make的指令跑出來的。
+    \item 在測試的過程中，通常會需要一個步驟一個步驟debug，因此我們覺得Makefile的簡單跟彈性可能會更合適。
     \item 我們提供了下列指令供測試、設定使用:
     \begin{itemize}
         \item make setup-arch / make setup-ubuntu: 可安裝需要的軟體。
@@ -153,7 +167,14 @@
 %------------------------------------------------------------
 \begin{frame}{Makefile}
 \begin{itemize}
-    \item 圖在這裡。請放Makefile的內容圖(請截圖)。
+    \item \includegraphics[width=300pt,height=150pt]{makefile1.png}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------------------
+\begin{frame}{Makefile}
+\begin{itemize}
+    \item \includegraphics[width=300pt,height=150pt]{makefile2.png}
 \end{itemize}
 \end{frame}
 
